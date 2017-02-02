@@ -53,6 +53,20 @@ function drawUser(){
     ellipse(user.x, user.y, user.r*2);
 }
 
+function userBoundaries() {
+    if(user.x + user.r > width - fieldOffset){
+        user.x = width - user.r - fieldOffset;
+    } else if (user.x - user.r < fieldOffset) {
+        user.x = user.r + fieldOffset;
+    }
+
+    if(user.y + user.r > height){
+        user.y = height - user.r;
+    } else if (user.y - user.r < 0) {
+        user.y = user.r;
+    }
+}
+
 function moveUser() {
     if (keyIsDown(LEFT_ARROW))
         user.x -= speed;
