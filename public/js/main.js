@@ -6,9 +6,10 @@ var goalSize = {
 var score = '0 - 0';
 
 var socket = io.connect();
-var user;
 var users = [];
+var user;
 var name = 'Unnamed';
+var speed = 5;
 
 var pink = '#C80064'; //200, 0, 100;
 var teal = '#74C2E1'; //116, 194, 225;
@@ -31,6 +32,7 @@ function draw() {
     drawScore();
     
     if(user){
+        moveUser();
         drawUser();
     }
 }
@@ -45,6 +47,20 @@ function drawUser(){
     strokeWeight(3);
     stroke(0);
     ellipse(user.x, user.y, user.r*2);
+}
+
+function moveUser() {
+    if (keyIsDown(LEFT_ARROW))
+        user.x -= speed;
+
+    if (keyIsDown(RIGHT_ARROW))
+        user.x += speed;
+
+    if (keyIsDown(UP_ARROW))
+        user.y -= speed;
+
+    if (keyIsDown(DOWN_ARROW))
+        user.y += speed;
 }
 
 function drawField() {
