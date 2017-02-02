@@ -1,7 +1,7 @@
 var fieldOffset = 30;
 var goalSize = {
-    x: 30, 
-    y:150
+    x: fieldOffset, 
+    y: 150
 };
 
 function setup() {
@@ -9,14 +9,14 @@ function setup() {
 }
 
 function draw() {
-    background(0);
+    background('#2980b9');
     drawField();
 }
 
 function drawField() {
     // Draw field margins
     fill('#00680A');
-    strokeWeight(10);
+    strokeWeight(6);
     stroke(255);
     rect(fieldOffset, 0, width - fieldOffset * 2, height);
     
@@ -36,8 +36,8 @@ function drawField() {
     stroke(255);
     
     // Left goal
-    rect(2, height/2 - goalSize.y/2, goalSize.x, goalSize.y);
+    rect(0, height/2 - goalSize.y/2, goalSize.x, goalSize.y);
     
     // Right goal
-    rect(width - goalSize.x - 2, height/2 - goalSize.y/2, goalSize.x, goalSize.y);
+    rect(width - goalSize.x, height/2 - goalSize.y/2, goalSize.x, goalSize.y);
 }
