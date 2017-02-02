@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 let canvasWidth = 800; // Make sure to be same as on client's
 let canvasHeight = 600; // Make sure to be same as on client's
+let fieldOffset = 30; // Make sure to be same as on client's
 
 let connections = [];
 let users = [];
@@ -70,6 +71,7 @@ function createNewUser(_id) {
 function getTeam() {
     let teamName;
     
+    // If teal team has more users, add to pink
     if(teams[1].count > teams[0].count){
         teamName = teams[0].name;
         teams[0].count++;
