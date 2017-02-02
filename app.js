@@ -12,13 +12,14 @@ let canvasWidth = 800; // Make sure to be same as on client's
 let canvasHeight = 600; // Make sure to be same as on client's
 
 let connections = [];
+let teams = ['Pink', 'Teal'];
 let users = [];
 let ball = new Ball(canvasWidth, canvasHeight);
 
 setInterval(tick, 1000);
 
 function tick() {
-    
+    console.log(users);
 }
 
 
@@ -39,7 +40,7 @@ io.sockets.on('connection', (socket) => {
     connections.push(socket);
     console.log('Connected: %s sockets connected.', connections.length);
     
-    socket.emit('connectNewUser', createNewUser());
+    socket.emit('connectNewUser', createNewUser(socket.id));
     
     //Disconnect
     socket.on('disconnect', (data) => {
@@ -49,14 +50,17 @@ io.sockets.on('connection', (socket) => {
     });
 });
 
-function createNewUser() {
+function createNewUser(_id) {
     let newUser = {};
     
-    getTeam();
+    newUser.id = _id;
+    newUser.team = getTeam();
     
+    users.push(newUser);
     return newUser;
 }
 
 function getTeam() {
-    
+    // If users.length % 2 === 0 => Pink team else => Teal team
+    return teams[users.length % 2];
 }
