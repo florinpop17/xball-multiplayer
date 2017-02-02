@@ -4,7 +4,9 @@
 }
 
 body, html {
-    background-color: black;
+    background-color: #2980b9;
+    color: white;
+    font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
     height: 100%;
 }
 
@@ -12,4 +14,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+p {
+    letter-spacing: 1px;
+}
+
+canvas {
+    margin-top: 20px;
+}
+
+.teal {
+    color: rgb(116, 194, 225);
+    text-shadow: 1px 1px rgba(0,0,0,0.75);
+}
+
+.pink {
+    color: rgb(200, 0, 100);
+    text-shadow: 1px 1px rgba(0,0,0,0.75);
 }

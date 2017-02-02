@@ -65,8 +65,8 @@ function drawField() {
     ellipse(width/2, height/2, 10, 10);
     
     // Draw the 4 edges
-    fill(0);
-    stroke(0);
+    fill('#2980b9');
+    stroke('#2980b9');
     // Top-left edge
     rect(0, 0, windowOffset - 3, height/2 - goal.y/2);
     // Bottom-left edge
