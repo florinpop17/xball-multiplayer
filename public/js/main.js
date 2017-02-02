@@ -3,6 +3,7 @@ var goalSize = {
     x: fieldOffset, 
     y: 150
 };
+var score = '0 - 0';
 
 function setup() {
     createCanvas(800, 600);
@@ -11,6 +12,7 @@ function setup() {
 function draw() {
     background('#2980b9');
     drawField();
+    drawScore();
 }
 
 function drawField() {
@@ -40,4 +42,12 @@ function drawField() {
     
     // Right goal
     rect(width - goalSize.x, height/2 - goalSize.y/2, goalSize.x, goalSize.y);
+}
+
+function drawScore() {
+    fill(255);
+    strokeWeight(0);
+    textSize(16);
+    text('Pink - Teal', 40, 30);
+    text(score, 63, 50);
 }
