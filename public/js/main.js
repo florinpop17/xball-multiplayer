@@ -52,7 +52,7 @@ function drawField() {
     fill('#00680A');
     strokeWeight(6);
     stroke(255);
-    rect(fieldOffset, 0, width - fieldOffset * 2, height);
+    rect(fieldOffset, 3, width - fieldOffset * 2, height - 6);
     
     // Draw middle line
     strokeWeight(6);
@@ -70,10 +70,10 @@ function drawField() {
     stroke(255);
     
     // Left goal
-    rect(0, height/2 - goalSize.y/2, goalSize.x, goalSize.y);
+    rect(3, height/2 - goalSize.y/2, goalSize.x - 3, goalSize.y);
     
     // Right goal
-    rect(width - goalSize.x, height/2 - goalSize.y/2, goalSize.x, goalSize.y);
+    rect(width - goalSize.x, height/2 - goalSize.y/2, goalSize.x - 3, goalSize.y);
 }
 
 function drawScore() {
