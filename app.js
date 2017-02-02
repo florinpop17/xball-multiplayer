@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 let connections = [];
 let users = [];
+let ball = new Ball();
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,13 +19,12 @@ app.get('/', (req, res) => {
 });
 
 server.listen(PORT, () => {
-    console.log("Server listening on port",PORT);
+    console.log("Server listening on port", PORT);
 });
 
 io.sockets.on('connection', (socket) => {
     connections.push(socket);
     console.log('Connected: %s sockets connected.', connections.length);
-    
     
     //Disconnect
     socket.on('disconnect', (data) => {
