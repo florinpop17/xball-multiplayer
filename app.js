@@ -63,15 +63,15 @@ function createNewUser(_id) {
     
     newUser.id = _id;
     newUser.team = getTeam();
+    newUser.r = 20;
     
     if(newUser.team === teams[0].name){ // Pink
-        newUser.x = (Math.random() * canvasWidth / 2) + fieldOffset;
+        newUser.x = (Math.random() * (canvasWidth / 2 - newUser.r)) + fieldOffset + newUser.r;
     } else { // Teal
-        newUser.x = (Math.random() * canvasWidth - fieldOffset) + canvasWidth / 2;
+        newUser.x = (Math.random() * (canvasWidth / 2 - fieldOffset - newUser.r)) + (canvasWidth / 2) + newUser.r;
     }
     
-    newUser.y = Math.random() * canvasHeight;
-    newUser.r = 20;
+    newUser.y = (Math.random() * (canvasHeight - newUser.r / 2)) + newUser.r;
     
     users.push(newUser);
     return newUser;
