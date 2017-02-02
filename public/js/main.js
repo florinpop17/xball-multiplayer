@@ -7,7 +7,11 @@ var score = '0 - 0';
 
 var socket = io.connect();
 var user;
+var users = [];
 var name = 'Unnamed';
+
+var pink = '#C80064'; //200, 0, 100;
+var teal = '#74C2E1'; //116, 194, 225;
 
 function preload() {
     socket.on('connectNewUser', function(data){
@@ -18,12 +22,29 @@ function preload() {
 
 function setup() {
     createCanvas(800, 600);
+    console.log(user);
 }
 
 function draw() {
     background('#2980b9');
     drawField();
     drawScore();
+    
+    if(user){
+        drawUser();
+    }
+}
+
+function drawUser(){
+    if(user.team === 'Pink'){
+        fill(pink)
+    } else {
+        fill(teal);
+    }
+    
+    strokeWeight(3);
+    stroke(0);
+    ellipse(user.x, user.y, user.r*2);
 }
 
 function drawField() {

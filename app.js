@@ -27,7 +27,7 @@ setInterval(tick, 2000);
 
 function tick() {
     console.log(users);
-    console.log('------------------------------------------------');
+    console.log('------------------------------');
 }
 
 
@@ -71,7 +71,7 @@ function createNewUser(_id) {
     }
     
     newUser.y = Math.random() * canvasHeight;
-    
+    newUser.r = 20;
     
     users.push(newUser);
     return newUser;
