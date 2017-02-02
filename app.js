@@ -8,8 +8,8 @@ const User = require('./libs/user');
 
 const PORT = process.env.PORT || 3000;
 
-let canvasWidth = 800;
-let canvasHeight = 600;
+let canvasWidth = 800; // Make sure to be same as on client's
+let canvasHeight = 600; // Make sure to be same as on client's
 
 let connections = [];
 let users = [];
@@ -39,6 +39,8 @@ io.sockets.on('connection', (socket) => {
     connections.push(socket);
     console.log('Connected: %s sockets connected.', connections.length);
     
+    socket.emit('connectNewUser', createNewUser());
+    
     //Disconnect
     socket.on('disconnect', (data) => {
         connections.splice(connections.indexOf(socket), 1);
@@ -46,3 +48,15 @@ io.sockets.on('connection', (socket) => {
         console.log('Disconnected: %s sockets connected.', connections.length);
     });
 });
+
+function createNewUser() {
+    let newUser = {};
+    
+    getTeam();
+    
+    return newUser;
+}
+
+function getTeam() {
+    
+}

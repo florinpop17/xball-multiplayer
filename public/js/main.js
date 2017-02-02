@@ -7,10 +7,12 @@ var score = '0 - 0';
 
 var socket = io.connect();
 var user;
+var name = 'Unnamed';
 
 function preload() {
-    socket.on('sendInitialData', function(data){
-        
+    socket.on('connectNewUser', function(data){
+        user = data;
+        console.log('New User Connected.');
     });
 }
 
