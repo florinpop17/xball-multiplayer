@@ -27,7 +27,7 @@ setInterval(tick, 2000);
 
 function tick() {
     console.log(users);
-    console.log('--------------------------------');
+    console.log('------------------------------------------------');
 }
 
 
@@ -63,6 +63,15 @@ function createNewUser(_id) {
     
     newUser.id = _id;
     newUser.team = getTeam();
+    
+    if(newUser.team === teams[0].name){ // Pink
+        newUser.x = (Math.random() * canvasWidth / 2) + fieldOffset;
+    } else { // Teal
+        newUser.x = (Math.random() * canvasWidth - fieldOffset) + canvasWidth / 2;
+    }
+    
+    newUser.y = Math.random() * canvasHeight;
+    
     
     users.push(newUser);
     return newUser;
