@@ -16,7 +16,7 @@ let teams = ['Pink', 'Teal'];
 let users = [];
 let ball = new Ball(canvasWidth, canvasHeight);
 
-setInterval(tick, 1000);
+setInterval(tick, 2000);
 
 function tick() {
     console.log(users);
