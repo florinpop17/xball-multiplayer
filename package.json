@@ -1,0 +1,26 @@
+{
+  "name": "xball-multiplayer",
+  "version": "1.0.0",
+  "description": "socket.io and p5js game",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florinpop17/xball-multiplayer.git"
+  },
+  "keywords": [],
+  "author": "Florin Pop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/florinpop17/xball-multiplayer/issues"
+  },
+  "homepage": "https://github.com/florinpop17/xball-multiplayer#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "socket.io": "^1.7.2"
+  }
+}
