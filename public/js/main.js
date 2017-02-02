@@ -37,6 +37,7 @@ function draw() {
     
     if(user){ // To avoid errors on first drawing
         moveUser();
+        userBoundaries();
         drawUser();
     }
 }
@@ -54,14 +55,20 @@ function drawUser(){
 }
 
 function userBoundaries() {
+    // Right
     if(user.x + user.r > width - fieldOffset){
         user.x = width - user.r - fieldOffset;
+    
+    // Left
     } else if (user.x - user.r < fieldOffset) {
         user.x = user.r + fieldOffset;
     }
-
+    
+    // Bottom
     if(user.y + user.r > height){
         user.y = height - user.r;
+        
+    // Top
     } else if (user.y - user.r < 0) {
         user.y = user.r;
     }
