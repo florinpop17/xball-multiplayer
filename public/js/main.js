@@ -18,12 +18,16 @@ function preload() {
     socket.on('connectNewUser', function(data){
         user = data;
         console.log('New User Connected.');
+        loop();
     });
 }
 
 function setup() {
     createCanvas(800, 600);
     console.log(user);
+    
+    // Only start looping when you have the connectedUser
+    noLoop();
 }
 
 function draw() {
@@ -31,7 +35,7 @@ function draw() {
     drawField();
     drawScore();
     
-    if(user){
+    if(user){ // To avoid errors on first drawing
         moveUser();
         drawUser();
     }
