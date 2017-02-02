@@ -12,14 +12,21 @@ let canvasWidth = 800; // Make sure to be same as on client's
 let canvasHeight = 600; // Make sure to be same as on client's
 
 let connections = [];
-let teams = ['Pink', 'Teal'];
 let users = [];
 let ball = new Ball(canvasWidth, canvasHeight);
+let teams = [{
+    name: 'Pink',
+    count: 0
+},{
+    name: 'Teal',
+    count: 0
+}];
 
 setInterval(tick, 2000);
 
 function tick() {
     console.log(users);
+    console.log('--------------------------------');
 }
 
 
@@ -61,6 +68,15 @@ function createNewUser(_id) {
 }
 
 function getTeam() {
-    // If users.length % 2 === 0 => Pink team else => Teal team
-    return teams[users.length % 2];
+    let teamName;
+    
+    if(teams[1].count > teams[0].count){
+        teamName = teams[0].name;
+        teams[0].count++;
+    } else {
+        teamName = teams[1].name;
+        teams[1].count++;
+    }
+    
+    return teamName;
 }
