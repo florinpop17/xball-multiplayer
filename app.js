@@ -3,7 +3,8 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const bodyParser = require('body-parser');
-const Ball = require('./lib/ball');
+const Ball = require('./libs/ball');
+const User = require('./libs/user');
 
 const PORT = process.env.PORT || 3000;
 

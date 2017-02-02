@@ -6,6 +6,13 @@ var goalSize = {
 var score = '0 - 0';
 
 var socket = io.connect();
+var user;
+
+function preload() {
+    socket.on('sendInitialData', function(data){
+        
+    });
+}
 
 function setup() {
     createCanvas(800, 600);
