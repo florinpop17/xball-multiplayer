@@ -5,6 +5,8 @@ var goalSize = {
 };
 var score = '0 - 0';
 
+var socket = io.connect();
+
 function setup() {
     createCanvas(800, 600);
 }
