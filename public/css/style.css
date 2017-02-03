@@ -58,9 +58,13 @@ canvas {
     text-align: center;
 }
 
+.popup h4 {
+    font-weight: 100;
+}
+
 .popup p {
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
 .popup input {
