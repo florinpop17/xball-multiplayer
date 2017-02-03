@@ -10,7 +10,7 @@ var users = [];
 var user;
 var ballLoc;
 var name = 'Unnamed';
-var speed = 5;
+var speed = 3;
 var userR = 20;
 var ballR = 12;
 
