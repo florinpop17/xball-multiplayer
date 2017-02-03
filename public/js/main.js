@@ -15,9 +15,14 @@ var pink = '#C80064'; //200, 0, 100;
 var teal = '#74C2E1'; //116, 194, 225;
 
 function preload() {
-    socket.on('connectNewUser', function(data){
-        user = data;
+    socket.on('connectNewUser', function(newUser){
+        user = newUser;
         console.log('New User Connected.');
+    });
+    
+    socket.on('allUsers', function(allUsers){
+        users = allUsers;
+        console.log('Got All Users');
         loop();
     });
 }
@@ -26,7 +31,7 @@ function setup() {
     createCanvas(800, 600);
     console.log(user);
     
-    // Only start looping when you have the connectedUser
+    // Only start looping when you have the initial data from the server
     noLoop();
 }
 
@@ -39,6 +44,8 @@ function draw() {
         moveUser();
         userBoundaries();
         drawUser();
+        
+        socket.emit('updateUser', user);
     }
 }
 
@@ -65,12 +72,12 @@ function userBoundaries() {
     }
     
     // Bottom
-    if(user.y + user.r > height){
-        user.y = height - user.r;
+    if(user.y + user.r > height - 3){
+        user.y = height - user.r - 3;
         
     // Top
-    } else if (user.y - user.r < 0) {
-        user.y = user.r;
+    } else if (user.y - user.r < 3) {
+        user.y = user.r + 3;
     }
 }
 

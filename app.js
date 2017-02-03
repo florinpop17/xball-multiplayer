@@ -49,6 +49,11 @@ io.sockets.on('connection', (socket) => {
     console.log('Connected: %s sockets connected.', connections.length);
     
     socket.emit('connectNewUser', createNewUser(socket.id));
+    socket.emit('allUsers', users);
+    
+    socket.on('updateUser', (user) => {
+        
+    });
     
     //Disconnect
     socket.on('disconnect', (data) => {
