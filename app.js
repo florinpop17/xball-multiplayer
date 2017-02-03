@@ -24,12 +24,14 @@ let teams = [{
     count: 0
 }];
 
-setInterval(tick, 20); // 50 frames / second => 1000 / 20 => 50
+setInterval(tick, 1000); // 50 frames / second => 1000 / 20 => 50
 //setInterval(()=>{console.log(users); console.log();}, 2000);
 function tick() {
 //    console.log(users);
 //    console.log('------------------------------');
     io.sockets.emit('tick', {users: users, ballLoc: ball.location});
+    
+    checkBallCollision(users, ball);
 }
 
 
@@ -65,16 +67,7 @@ io.sockets.on('connection', (socket) => {
     //Disconnect
     socket.on('disconnect', (data) => {
         connections.splice(connections.indexOf(socket), 1);
-        users = users.filter(user =>{
-            if(user.id !== socket.id){
-                console.log(user.id, socket.id);
-                console.log('NOT disconnected')
-                return true;
-            } else {
-                console.log('disconnected')
-                return false;
-            }
-        });
+        users = users.filter(user => user.id !== socket.id);
         console.log('Disconnected: %s sockets connected.', connections.length);
     });
 });
@@ -111,3 +104,78 @@ function getTeam() {
     
     return teamName;
 }
+
+function mag(vector) {
+    return Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+}
+
+function normalize(vector) {
+    var m = mag(vector);
+    if(m > 0){
+        vector.x /= m;
+        vector.y /= m;
+    }
+    return vector;
+}
+
+function setMag(vector, val) {
+    vector.x *= val;
+    vector.y *= val;
+    
+    return vector;
+}
+
+function dist(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}
+
+function checkBallCollision(users, ball) {
+    
+    users.forEach(user => {
+        let d = dist(user.x, user.y, ball.location.x, ball.location.y);
+
+        if(d-3 <= user.r + ball.r){
+            if(user.isKicking) {
+                x = createVector(ball.location.x - user.location.x, ball.location.y - user.location.y).setMag(20);
+            } else {
+                x = createVector(ball.location.x - user.location.x, ball.location.y - user.location.y).setMag(1.5);
+                user.isKicking = false;
+            }
+            ball.applyForce(x);
+        }
+    });
+}
+
+function ballEdges(ball) {
+    
+    // Check if outside the goal (y check) right-side
+    if(ball.location.x + ball.r > width - windowOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x + ball.r > width - windowOffset && ball.location.y > height/2 + goal.y/2){
+            ball.location.x = width - ball.r - windowOffset;
+            ball.velocity.x *= -1;
+
+    // Check if inside the goal right-side && score team 1 (pink)
+    } else if (ball.location.x + ball.r > width && ball.location.y > height/2 - goal.y/2 || ball.location.x + ball.r > width && ball.location.y < height/2 + goal.y/2){
+            ball.location.x = width - ball.r;
+            scored('pink');            
+
+    // Check if outside the goal (y check) left-side
+    } else if (ball.location.x - ball.r < windowOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x - ball.r < windowOffset && ball.location.y > height/2 + goal.y/2){
+            ball.location.x = windowOffset + ball.r;
+            ball.velocity.x *= -1;
+
+    // Check if inside the goal left-side && score team 1 (pink)
+    } else if (ball.location.x - ball.r < 0 && ball.location.y > height/2 - goal.y/2 || ball.location.x - ball.r < 0 && ball.location.y < height/2 + goal.y/2){
+            ball.location.x = ball.r;
+            scored('teal');
+    }
+
+    if(ball.location.y + ball.r > height){
+        ball.velocity.y *= -1;
+        ball.location.y = height - ball.r;
+    } else if (ball.location.y - ball.r < 0) {
+        ball.velocity.y *= -1;
+        ball.location.y = ball.r;
+    }
+}
+
+
