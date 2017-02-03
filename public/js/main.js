@@ -31,7 +31,7 @@ document.getElementById('btn').addEventListener('click', function(){
 function preload() {
     socket.on('connectNewUser', function(newUser){
         user = newUser;
-        console.log('New User Connected.');
+        console.log('User Connected.');
     });
     
     socket.on('tick', function(data) {
@@ -40,7 +40,7 @@ function preload() {
     });
     
     socket.on('scored', function(scores) {
-        console.log(scores);
+//        console.log(scores);
         score = `${scores.pink} - ${scores.teal}`; 
     });
 }
