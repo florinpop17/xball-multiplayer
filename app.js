@@ -117,9 +117,9 @@ function getTeam() {
 
 function scored(team) {
     console.log(team);
-    if(team === teams[0].name) // purple scorred
+    if(team === teams[0].name)      // purple scorred
         teams[0].score++;
-    else                  // teal scorred
+    else if(team === teams[1].name) // teal scorred
         teams[1].score++;
     
     let scores = {
