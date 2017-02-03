@@ -1,6 +1,7 @@
 *, *:after, *:before{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body, html {
@@ -54,7 +55,6 @@ canvas {
     background-color: rgb(116, 194, 225);
     border-radius: 5px;
     padding: 30px;
-    
     text-align: center;
 }
 
@@ -65,5 +65,14 @@ canvas {
 .popup input {
     border: 0;
     border-radius: 0;
-    padding: 20px;
+    font-size: 16px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+}
+
+.popup #btn {
+    background-color: rgb(200, 0, 100);
+    color: #fff;
+    font-weight: bold;
 }
