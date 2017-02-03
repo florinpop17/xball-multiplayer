@@ -22,7 +22,8 @@ document.getElementById('btn').addEventListener('click', function(){
     if(newName){
         user.name = newName;
         document.getElementById('popup').style.display = 'none';
-        socket.emit('setName', name);
+        socket.emit('setName', newName);
+        loop();
     }
 });
 
@@ -31,7 +32,6 @@ function preload() {
     socket.on('connectNewUser', function(newUser){
         user = newUser;
         console.log('New User Connected.');
-        loop();
     });
     
     socket.on('tick', function(data) {
