@@ -57,8 +57,8 @@ function drawUser(_user){
         fill(teal);
     }
     
-    strokeWeight(3);
     stroke(0);
+    strokeWeight(3);
     ellipse(_user.x, _user.y, _user.r*2);
 }
 
@@ -102,6 +102,22 @@ function moveUser() {
 
     if (keyIsDown(DOWN_ARROW))
         user.y += speed;
+}
+
+function keyPressed() {
+    
+    // 32 is the keyCode for the 'space' button
+    if(keyCode === 32) {
+        user.isKicking = true;
+    }
+}
+
+function keyReleased() {
+    
+    // 32 is the keyCode for the 'space' button
+    if(keyCode === 32){
+        user.isKicking = false;
+    }
 }
 
 function drawField() {
