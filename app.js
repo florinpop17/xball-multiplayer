@@ -74,6 +74,15 @@ io.sockets.on('connection', (socket) => {
         })
     });
     
+    socket.on('setName', newName => {
+        users.forEach(user => {
+            if(user.id === socket.id){
+                user.name = newName;
+            }
+        })
+        console.log('setName');
+    });
+    
     //Disconnect
     socket.on('disconnect', (data) => {
         connections.splice(connections.indexOf(socket), 1);
@@ -87,6 +96,7 @@ function createNewUser(_id) {
     
     newUser.id = _id;
     newUser.team = getTeam();
+    newUser.name = 'Unnamed';
     
     if(newUser.team === teams[0].name){ // Pink
         newUser.x = (Math.random() * (canvasWidth / 2 - userR)) + fieldOffset + userR;

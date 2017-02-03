@@ -17,6 +17,16 @@ var ballR = 12;
 var pink = '#C80064'; //200, 0, 100;
 var teal = '#74C2E1'; //116, 194, 225;
 
+document.getElementById('btn').addEventListener('click', function(){
+    let newName = document.getElementById('name').value;
+    if(newName){
+        name = newName;
+        document.getElementById('popup').style.display = 'none';
+        socket.emit('setName', name);
+    }
+});
+
+
 function preload() {
     socket.on('connectNewUser', function(newUser){
         user = newUser;
