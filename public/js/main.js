@@ -57,7 +57,11 @@ function drawUser(_user){
         fill(teal);
     }
     
-    stroke(0);
+    if(_user.isKicking){
+        stroke(255);
+    } else {
+        stroke(0);
+    }
     strokeWeight(3);
     ellipse(_user.x, _user.y, _user.r*2);
 }
