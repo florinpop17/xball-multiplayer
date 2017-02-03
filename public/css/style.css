@@ -10,7 +10,7 @@ body, html {
     height: 100%;
 }
 
-body {
+body, .popup-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,4 +38,32 @@ canvas {
 .pink {
     color: rgb(200, 0, 100);
     text-shadow: 1px 1px rgba(0,0,0,0.75);
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+    background-color: rgb(116, 194, 225);
+    border-radius: 5px;
+    padding: 30px;
+    
+    text-align: center;
+}
+
+.popup h4 {
+    margin-bottom: 40px;
+}
+
+.popup input {
+    border: 0;
+    border-radius: 0;
+    padding: 20px;
 }
