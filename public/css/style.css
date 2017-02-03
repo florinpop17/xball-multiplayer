@@ -8,7 +8,8 @@ body, html {
     background-color: #2980b9;
     color: white;
     font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
-    height: 100%;
+    height: 105%;
+    margin-bottom: 50px;
 }
 
 body, .popup-container {
@@ -84,4 +85,24 @@ canvas {
 
 .popup #btn:hover {
     cursor:pointer;
+}
+
+footer {
+    background-color: #0b0e21;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer span {
+    color: #e74c3c;
+}
+
+footer a {
+    color: #2980b9;
+    text-decoration: none;
 }
