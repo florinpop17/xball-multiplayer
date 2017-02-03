@@ -43,14 +43,16 @@ function draw() {
     if(user){ // To avoid errors on first drawing
         moveUser();
         userBoundaries();
-        drawUser();
+        drawUser(user);
         
         socket.emit('updateUser', user);
     }
+    
+    drawAllUsersExceptThis();
 }
 
-function drawUser(){
-    if(user.team === 'Pink'){
+function drawUser(_user){
+    if(_user.team === 'Pink'){
         fill(pink)
     } else {
         fill(teal);
@@ -58,7 +60,7 @@ function drawUser(){
     
     strokeWeight(3);
     stroke(0);
-    ellipse(user.x, user.y, user.r*2);
+    ellipse(_user.x, _user.y, _user.r*2);
 }
 
 function userBoundaries() {
@@ -79,6 +81,14 @@ function userBoundaries() {
     } else if (user.y - user.r < 3) {
         user.y = user.r + 3;
     }
+}
+
+function drawAllUsersExceptThis() {
+    users.forEach(user => {
+        if(user.id !== socket.id){
+            drawUser(user);
+        } 
+    });
 }
 
 function moveUser() {

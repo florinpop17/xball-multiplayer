@@ -26,8 +26,9 @@ let teams = [{
 setInterval(tick, 2000);
 
 function tick() {
-    console.log(users);
-    console.log('------------------------------');
+//    console.log(users);
+//    console.log('------------------------------');
+    io.sockets.emit('tick', users);
 }
 
 
