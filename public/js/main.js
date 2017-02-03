@@ -68,6 +68,14 @@ function drawTheBall(_ballLoc) {
 }
 
 function drawUser(_user){
+    
+    // Drawing the name;
+    textAlign(CENTER);
+    textSize(14);
+    fill(255);
+    strokeWeight(0);
+    text(`${_user.name}`, _user.x, _user.y - userR*1.5);
+    
     if(_user.team === 'Pink'){
         fill(pink)
     } else {
@@ -79,6 +87,7 @@ function drawUser(_user){
     } else {
         stroke(0);
     }
+    
     strokeWeight(3);
     ellipse(_user.x, _user.y, userR*2);
 }
@@ -173,6 +182,7 @@ function drawField() {
 function drawScore() {
     fill(255);
     strokeWeight(0);
+    textAlign(LEFT);
     textSize(16);
     text('Pink - Teal', 40, 30);
     text(score, 63, 50);
