@@ -180,13 +180,14 @@ function drawField() {
     ellipse(width/2, height/2, 10, 10);
     
     // Drawing the 2 goals
-    fill('#00680A')
     stroke(255);
     
     // Left goal
+    fill(pink);
     rect(3, height/2 - goalSize.y/2, goalSize.x - 3, goalSize.y);
     
     // Right goal
+    fill(teal);
     rect(width - goalSize.x, height/2 - goalSize.y/2, goalSize.x - 3, goalSize.y);
 }
 

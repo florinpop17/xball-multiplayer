@@ -76,7 +76,6 @@ io.sockets.on('connection', (socket) => {
     
     socket.on('setName', newName => {
         users.forEach(user => {
-            console.log(user.id, socket.id);
             if(user.id === socket.id){
                 user.name = newName;
             }
@@ -126,7 +125,6 @@ function getTeam() {
 }
 
 function scored(team) {
-    console.log(team);
     if(team === teams[0].name)      // purple scorred
         teams[0].score++;
     else if(team === teams[1].name) // teal scorred
