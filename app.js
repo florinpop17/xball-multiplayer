@@ -133,15 +133,20 @@ function checkBallCollision(users, ball) {
     
     users.forEach(user => {
         let d = dist(user.x, user.y, ball.location.x, ball.location.y);
-
-        if(d-3 <= user.r + ball.r){
+        let pushForce;
+        
+        if(d-3 <= userR + ball.r){
+            pushForce = {
+                x: ball.location.x - user.x,
+                y: ball.location.y - user.y
+            };
             if(user.isKicking) {
-                x = createVector(ball.location.x - user.location.x, ball.location.y - user.location.y).setMag(20);
+                pushForce.setMag(pushForce, 20);
             } else {
-                x = createVector(ball.location.x - user.location.x, ball.location.y - user.location.y).setMag(1.5);
+                pushForce.setMag(pushForce, 20);
                 user.isKicking = false;
             }
-            ball.applyForce(x);
+            ball.applyForce(pushForce);
         }
     });
 }
