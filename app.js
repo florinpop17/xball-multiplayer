@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 let canvasWidth = 800; // Make sure to be same as on client's
 let canvasHeight = 600; // Make sure to be same as on client's
 let fieldOffset = 30; // Make sure to be same as on client's
+let r = 20; // Make sure to be same as on client's
 
 let connections = [];
 let users = [];
@@ -85,12 +86,12 @@ function createNewUser(_id) {
     newUser.team = getTeam();
     
     if(newUser.team === teams[0].name){ // Pink
-        newUser.x = (Math.random() * (canvasWidth / 2 - newUser.r)) + fieldOffset + newUser.r;
+        newUser.x = (Math.random() * (canvasWidth / 2 - r)) + fieldOffset + r;
     } else { // Teal
-        newUser.x = (Math.random() * (canvasWidth / 2 - fieldOffset - newUser.r)) + (canvasWidth / 2) + newUser.r;
+        newUser.x = (Math.random() * (canvasWidth / 2 - fieldOffset - r)) + (canvasWidth / 2) + r;
     }
     
-    newUser.y = (Math.random() * (canvasHeight - newUser.r / 2)) + newUser.r;
+    newUser.y = (Math.random() * (canvasHeight - r / 2)) + r;
     
     users.push(newUser);
     return newUser;

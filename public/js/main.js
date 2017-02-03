@@ -69,21 +69,21 @@ function drawUser(_user){
 
 function userBoundaries() {
     // Right
-    if(user.x + user.r > width - fieldOffset){
-        user.x = width - user.r - fieldOffset;
+    if(user.x + r > width - fieldOffset){
+        user.x = width - r - fieldOffset;
     
     // Left
-    } else if (user.x - user.r < fieldOffset) {
-        user.x = user.r + fieldOffset;
+    } else if (user.x - r < fieldOffset) {
+        user.x = r + fieldOffset;
     }
     
     // Bottom
-    if(user.y + user.r > height - 3){
-        user.y = height - user.r - 3;
+    if(user.y + r > height - 3){
+        user.y = height - r - 3;
         
     // Top
-    } else if (user.y - user.r < 3) {
-        user.y = user.r + 3;
+    } else if (user.y - r < 3) {
+        user.y = r + 3;
     }
 }
 
