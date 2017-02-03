@@ -56,6 +56,7 @@ io.sockets.on('connection', (socket) => {
             if(user.id === socket.id){
                 user.x = updatedUser.x;
                 user.y = updatedUser.y;
+                user.isKicking = updatedUser.isKicking;
             }
         })
     });
