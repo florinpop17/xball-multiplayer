@@ -32,6 +32,9 @@ function tick() {
     io.sockets.emit('tick', {users: users, ballLoc: ball.location});
     
     checkBallCollision(users, ball);
+    ballEdges(ball);
+    ball.update();
+    console.log(ball);
 }
 
 
@@ -141,9 +144,9 @@ function checkBallCollision(users, ball) {
                 y: ball.location.y - user.y
             };
             if(user.isKicking) {
-                pushForce.setMag(pushForce, 20);
+                pushForce = setMag(pushForce, 20);
             } else {
-                pushForce.setMag(pushForce, 20);
+                pushForce = setMag(pushForce, 20);
                 user.isKicking = false;
             }
             ball.applyForce(pushForce);
@@ -154,8 +157,8 @@ function checkBallCollision(users, ball) {
 function ballEdges(ball) {
     
     // Check if outside the goal (y check) right-side
-    if(ball.location.x + ball.r > width - windowOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x + ball.r > width - windowOffset && ball.location.y > height/2 + goal.y/2){
-            ball.location.x = width - ball.r - windowOffset;
+    if(ball.location.x + ball.r > width - fieldOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x + ball.r > width - fieldOffset && ball.location.y > height/2 + goal.y/2){
+            ball.location.x = width - ball.r - fieldOffset;
             ball.velocity.x *= -1;
 
     // Check if inside the goal right-side && score team 1 (pink)
@@ -164,8 +167,8 @@ function ballEdges(ball) {
             scored('pink');            
 
     // Check if outside the goal (y check) left-side
-    } else if (ball.location.x - ball.r < windowOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x - ball.r < windowOffset && ball.location.y > height/2 + goal.y/2){
-            ball.location.x = windowOffset + ball.r;
+    } else if (ball.location.x - ball.r < fieldOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x - ball.r < fieldOffset && ball.location.y > height/2 + goal.y/2){
+            ball.location.x = fieldOffset + ball.r;
             ball.velocity.x *= -1;
 
     // Check if inside the goal left-side && score team 1 (pink)
