@@ -22,8 +22,7 @@ function preload() {
     });
     
     socket.on('tick', function(allUsers) {
-        users = allUsers; 
-        console.log('Got All Users');
+        users = allUsers;
     });
 }
 

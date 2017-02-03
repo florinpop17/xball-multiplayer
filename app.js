@@ -23,7 +23,7 @@ let teams = [{
     count: 0
 }];
 
-setInterval(tick, 33); // 30 frames / second => 1000 / 30 = 33.33;
+setInterval(tick, 20); // 50 frames / second => 1000 / 20 => 50
 
 function tick() {
 //    console.log(users);
