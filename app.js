@@ -23,10 +23,12 @@ let users = [];
 let ball = new Ball(canvasWidth, canvasHeight);
 let teams = [{
     name: 'Pink',
-    count: 0
+    count: 0,
+    score: 0
 },{
     name: 'Teal',
-    count: 0
+    count: 0,
+    score: 0
 }];
 
 setInterval(tick, 33); // 50 frames / second => 1000 / 20 => 50
@@ -113,6 +115,23 @@ function getTeam() {
     return teamName;
 }
 
+function scored(team) {
+    if(team === teams[0]) // purple scorred
+        teams[0].score++;
+    else                  // teal scorred
+        teams[1].score++;
+    
+    let scores = {
+        pink: team[0].score,
+        teal: team[1].score
+    }
+    io.sockets.emit('scored', scores)
+    
+    ball.stopBall();
+    ball.location.x = canvasWidth / 2 ;
+    ball.location.y = canvasHeight / 2;
+}
+
 function mag(vector) {
     return Math.sqrt(vector.x * vector.x + vector.y * vector.y);
 }
@@ -190,12 +209,4 @@ function ballEdges(ball) {
         ball.velocity.y *= -1;
         ball.location.y = ball.r;
     }
-}
-
-function scored(team) {
-    console.log(team);
-    
-    ball.stopBall();
-    ball.location.x = canvasWidth / 2 ;
-    ball.location.y = canvasHeight / 2;
 }

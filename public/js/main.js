@@ -28,6 +28,11 @@ function preload() {
         users = data.users;
         ballLoc = data.ballLoc;
     });
+    
+    socket.on('scored', function(scores) {
+        console.log(scores);
+        score = `${scores.pink} - ${scores.teal}`; 
+    });
 }
 
 function setup() {
