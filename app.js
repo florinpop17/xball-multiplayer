@@ -23,7 +23,7 @@ let teams = [{
     count: 0
 }];
 
-setInterval(tick, 2000);
+setInterval(tick, 33); // 30 frames / second => 1000 / 30 = 33.33;
 
 function tick() {
 //    console.log(users);
@@ -50,7 +50,6 @@ io.sockets.on('connection', (socket) => {
     console.log('Connected: %s sockets connected.', connections.length);
     
     socket.emit('connectNewUser', createNewUser(socket.id));
-    socket.emit('allUsers', users);
     
     socket.on('updateUser', (updatedUser) => {
         users.forEach(user => {

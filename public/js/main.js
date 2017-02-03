@@ -18,12 +18,12 @@ function preload() {
     socket.on('connectNewUser', function(newUser){
         user = newUser;
         console.log('New User Connected.');
+        loop();
     });
     
-    socket.on('allUsers', function(allUsers){
-        users = allUsers;
+    socket.on('tick', function(allUsers) {
+        users = allUsers; 
         console.log('Got All Users');
-        loop();
     });
 }
 
