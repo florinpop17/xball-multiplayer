@@ -132,6 +132,11 @@ function scored(team) {
     else if(team === teams[1].name) // teal scorred
         teams[1].score++;
     
+    if(teams[0].score === 5 || teams[1].score === 5){ // End of one round / Reset score
+        teams[0].score = 0;
+        teams[1].score = 0;
+    }
+    
     let scores = {
         pink: teams[0].score,
         teal: teams[1].score
