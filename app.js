@@ -24,7 +24,7 @@ let teams = [{
 }];
 
 setInterval(tick, 20); // 50 frames / second => 1000 / 20 => 50
-
+setInterval(()=>{console.log(users); console.log();}, 2000);
 function tick() {
 //    console.log(users);
 //    console.log('------------------------------');
@@ -63,7 +63,16 @@ io.sockets.on('connection', (socket) => {
     //Disconnect
     socket.on('disconnect', (data) => {
         connections.splice(connections.indexOf(socket), 1);
-        users = users.filter(user => user.id !== socket.id);
+        users = users.filter(user =>{
+            if(user.id !== socket.id){
+                console.log(user.id, socket.id);
+                console.log('NOT disconnected')
+                return true;
+            } else {
+                console.log('disconnected')
+                return false;
+            }
+        });
         console.log('Disconnected: %s sockets connected.', connections.length);
     });
 });
