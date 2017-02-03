@@ -116,14 +116,15 @@ function getTeam() {
 }
 
 function scored(team) {
-    if(team === teams[0]) // purple scorred
+    console.log(team);
+    if(team === teams[0].name) // purple scorred
         teams[0].score++;
     else                  // teal scorred
         teams[1].score++;
     
     let scores = {
-        pink: team[0].score,
-        teal: team[1].score
+        pink: teams[0].score,
+        teal: teams[1].score
     }
     io.sockets.emit('scored', scores)
     
@@ -171,7 +172,7 @@ function checkBallCollision(users, ball) {
             if(user.isKicking) {
                 pushForce = setMag(pushForce, 20);
             } else {
-                pushForce = setMag(pushForce, 20);
+                pushForce = setMag(pushForce, 1.5);
                 user.isKicking = false;
             }
             ball.applyForce(pushForce);
