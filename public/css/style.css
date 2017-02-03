@@ -58,8 +58,9 @@ canvas {
     text-align: center;
 }
 
-.popup h4 {
-    margin-bottom: 40px;
+.popup p {
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .popup input {
@@ -75,4 +76,8 @@ canvas {
     background-color: rgb(200, 0, 100);
     color: #fff;
     font-weight: bold;
+}
+
+.popup #btn:hover {
+    cursor:pointer;
 }
