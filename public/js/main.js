@@ -74,6 +74,7 @@ function draw() {
 
 function drawTheBall(_ballLoc) {
     fill(255);
+    stroke(0);
     ellipse(_ballLoc.x, _ballLoc.y, ballR * 2);
 }
 
