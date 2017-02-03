@@ -32,7 +32,7 @@ let teams = [{
 }];
 
 setInterval(tick, 33); // 50 frames / second => 1000 / 20 => 50
-//setInterval(()=>{console.log(users); console.log();}, 2000);
+setInterval(()=>{console.log(users); console.log();}, 2000);
 function tick() {
 //    console.log(users);
 //    console.log('------------------------------');
@@ -76,11 +76,11 @@ io.sockets.on('connection', (socket) => {
     
     socket.on('setName', newName => {
         users.forEach(user => {
+            console.log(user.id, socket.id);
             if(user.id === socket.id){
                 user.name = newName;
             }
-        })
-        console.log('setName');
+        });
     });
     
     //Disconnect

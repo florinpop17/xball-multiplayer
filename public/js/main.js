@@ -20,7 +20,7 @@ var teal = '#74C2E1'; //116, 194, 225;
 document.getElementById('btn').addEventListener('click', function(){
     let newName = document.getElementById('name').value;
     if(newName){
-        name = newName;
+        user.name = newName;
         document.getElementById('popup').style.display = 'none';
         socket.emit('setName', name);
     }
