@@ -29,7 +29,7 @@ let teams = [{
     count: 0
 }];
 
-setInterval(tick, 1000); // 50 frames / second => 1000 / 20 => 50
+setInterval(tick, 33); // 50 frames / second => 1000 / 20 => 50
 //setInterval(()=>{console.log(users); console.log();}, 2000);
 function tick() {
 //    console.log(users);
@@ -39,7 +39,7 @@ function tick() {
     checkBallCollision(users, ball);
     ballEdges(ball);
     ball.update();
-    console.log(ball);
+//    console.log(ball);
 }
 
 
@@ -127,6 +127,7 @@ function normalize(vector) {
 }
 
 function setMag(vector, val) {
+    vector = normalize(vector);
     vector.x *= val;
     vector.y *= val;
     
@@ -143,7 +144,7 @@ function checkBallCollision(users, ball) {
         let d = dist(user.x, user.y, ball.location.x, ball.location.y);
         let pushForce;
         
-        if(d-3 <= userR + ball.r){
+        if(d <= userR + ball.r){
             pushForce = {
                 x: ball.location.x - user.x,
                 y: ball.location.y - user.y
@@ -191,4 +192,10 @@ function ballEdges(ball) {
     }
 }
 
-
+function scored(team) {
+    console.log(team);
+    
+    ball.stopBall();
+    ball.location.x = canvasWidth / 2 ;
+    ball.location.y = canvasHeight / 2;
+}
