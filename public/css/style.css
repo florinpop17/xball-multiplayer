@@ -85,6 +85,10 @@ p {
     cursor:pointer;
 }
 
+.popup small{
+    margin-top: 10px;
+}
+
 footer {
     background-color: #0b0e21;
     padding: 20px;
