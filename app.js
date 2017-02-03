@@ -12,6 +12,11 @@ let canvasWidth = 800; // Make sure to be same as on client's
 let canvasHeight = 600; // Make sure to be same as on client's
 let fieldOffset = 30; // Make sure to be same as on client's
 let userR = 20; // Make sure to be same as on client's
+let goal = {
+    x: fieldOffset,
+    y: 150 // Make sure to be same as on client's goalSize
+}
+
 
 let connections = [];
 let users = [];
@@ -157,29 +162,29 @@ function checkBallCollision(users, ball) {
 function ballEdges(ball) {
     
     // Check if outside the goal (y check) right-side
-    if(ball.location.x + ball.r > width - fieldOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x + ball.r > width - fieldOffset && ball.location.y > height/2 + goal.y/2){
-            ball.location.x = width - ball.r - fieldOffset;
+    if(ball.location.x + ball.r > canvasWidth - fieldOffset && ball.location.y < canvasHeight/2 - goal.y/2 || ball.location.x + ball.r > canvasWidth - fieldOffset && ball.location.y > canvasHeight/2 + goal.y/2){
+            ball.location.x = canvasWidth - ball.r - fieldOffset;
             ball.velocity.x *= -1;
 
     // Check if inside the goal right-side && score team 1 (pink)
-    } else if (ball.location.x + ball.r > width && ball.location.y > height/2 - goal.y/2 || ball.location.x + ball.r > width && ball.location.y < height/2 + goal.y/2){
-            ball.location.x = width - ball.r;
-            scored('pink');            
+    } else if (ball.location.x + ball.r > canvasWidth && ball.location.y > canvasHeight/2 - goal.y/2 || ball.location.x + ball.r > canvasWidth && ball.location.y < canvasHeight/2 + goal.y/2){
+            ball.location.x = canvasWidth - ball.r;
+            scored('Pink');            
 
     // Check if outside the goal (y check) left-side
-    } else if (ball.location.x - ball.r < fieldOffset && ball.location.y < height/2 - goal.y/2 || ball.location.x - ball.r < fieldOffset && ball.location.y > height/2 + goal.y/2){
+    } else if (ball.location.x - ball.r < fieldOffset && ball.location.y < canvasHeight/2 - goal.y/2 || ball.location.x - ball.r < fieldOffset && ball.location.y > canvasHeight/2 + goal.y/2){
             ball.location.x = fieldOffset + ball.r;
             ball.velocity.x *= -1;
 
     // Check if inside the goal left-side && score team 1 (pink)
-    } else if (ball.location.x - ball.r < 0 && ball.location.y > height/2 - goal.y/2 || ball.location.x - ball.r < 0 && ball.location.y < height/2 + goal.y/2){
+    } else if (ball.location.x - ball.r < 0 && ball.location.y > canvasHeight/2 - goal.y/2 || ball.location.x - ball.r < 0 && ball.location.y < canvasHeight/2 + goal.y/2){
             ball.location.x = ball.r;
-            scored('teal');
+            scored('Teal');
     }
 
-    if(ball.location.y + ball.r > height){
-        ball.velocity.y *= -1;
-        ball.location.y = height - ball.r;
+    if(ball.location.y + ball.r > canvasHeight){
+        ball.velocity.y *= -1;canvasHeight
+        ball.location.y = canvasHeight - ball.r;
     } else if (ball.location.y - ball.r < 0) {
         ball.velocity.y *= -1;
         ball.location.y = ball.r;
