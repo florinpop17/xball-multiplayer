@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 let canvasWidth = 800; // Make sure to be same as on client's
 let canvasHeight = 600; // Make sure to be same as on client's
 let fieldOffset = 30; // Make sure to be same as on client's
-let r = 20; // Make sure to be same as on client's
+let userR = 20; // Make sure to be same as on client's
 
 let connections = [];
 let users = [];
@@ -29,7 +29,7 @@ setInterval(tick, 20); // 50 frames / second => 1000 / 20 => 50
 function tick() {
 //    console.log(users);
 //    console.log('------------------------------');
-    io.sockets.emit('tick', users);
+    io.sockets.emit('tick', {users: users, ballLoc: ball.location});
 }
 
 
@@ -86,12 +86,12 @@ function createNewUser(_id) {
     newUser.team = getTeam();
     
     if(newUser.team === teams[0].name){ // Pink
-        newUser.x = (Math.random() * (canvasWidth / 2 - r)) + fieldOffset + r;
+        newUser.x = (Math.random() * (canvasWidth / 2 - userR)) + fieldOffset + userR;
     } else { // Teal
-        newUser.x = (Math.random() * (canvasWidth / 2 - fieldOffset - r)) + (canvasWidth / 2) + r;
+        newUser.x = (Math.random() * (canvasWidth / 2 - fieldOffset - userR)) + (canvasWidth / 2) + userR;
     }
     
-    newUser.y = (Math.random() * (canvasHeight - r / 2)) + r;
+    newUser.y = (Math.random() * (canvasHeight - userR / 2)) + userR;
     
     users.push(newUser);
     return newUser;

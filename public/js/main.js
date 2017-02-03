@@ -8,9 +8,11 @@ var score = '0 - 0';
 var socket = io.connect();
 var users = [];
 var user;
+var ballLoc;
 var name = 'Unnamed';
 var speed = 5;
-var r = 20;
+var userR = 20;
+var ballR = 12;
 
 var pink = '#C80064'; //200, 0, 100;
 var teal = '#74C2E1'; //116, 194, 225;
@@ -22,8 +24,9 @@ function preload() {
         loop();
     });
     
-    socket.on('tick', function(allUsers) {
-        users = allUsers;
+    socket.on('tick', function(data) {
+        users = data.users;
+        ballLoc = data.ballLoc;
     });
 }
 
@@ -49,6 +52,14 @@ function draw() {
     }
     
     drawAllUsersExceptThis();
+    
+    if(ballLoc)
+        drawTheBall(ballLoc);
+}
+
+function drawTheBall(_ballLoc) {
+    fill(255);
+    ellipse(_ballLoc.x, _ballLoc.y, ballR * 2);
 }
 
 function drawUser(_user){
@@ -64,26 +75,26 @@ function drawUser(_user){
         stroke(0);
     }
     strokeWeight(3);
-    ellipse(_user.x, _user.y, r*2);
+    ellipse(_user.x, _user.y, userR*2);
 }
 
 function userBoundaries() {
     // Right
-    if(user.x + r > width - fieldOffset){
-        user.x = width - r - fieldOffset;
+    if(user.x + userR > width - fieldOffset){
+        user.x = width - userR - fieldOffset;
     
     // Left
-    } else if (user.x - r < fieldOffset) {
-        user.x = r + fieldOffset;
+    } else if (user.x - userR < fieldOffset) {
+        user.x = userR + fieldOffset;
     }
     
     // Bottom
-    if(user.y + r > height - 3){
-        user.y = height - r - 3;
+    if(user.y + userR > height - 3){
+        user.y = height - userR - 3;
         
     // Top
-    } else if (user.y - r < 3) {
-        user.y = r + 3;
+    } else if (user.y - userR < 3) {
+        user.y = userR + 3;
     }
 }
 
