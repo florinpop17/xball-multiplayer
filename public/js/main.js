@@ -10,6 +10,7 @@ var users = [];
 var user;
 var name = 'Unnamed';
 var speed = 5;
+var r = 20;
 
 var pink = '#C80064'; //200, 0, 100;
 var teal = '#74C2E1'; //116, 194, 225;
@@ -63,7 +64,7 @@ function drawUser(_user){
         stroke(0);
     }
     strokeWeight(3);
-    ellipse(_user.x, _user.y, _user.r*2);
+    ellipse(_user.x, _user.y, r*2);
 }
 
 function userBoundaries() {

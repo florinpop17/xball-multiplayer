@@ -24,7 +24,7 @@ let teams = [{
 }];
 
 setInterval(tick, 20); // 50 frames / second => 1000 / 20 => 50
-setInterval(()=>{console.log(users); console.log();}, 2000);
+//setInterval(()=>{console.log(users); console.log();}, 2000);
 function tick() {
 //    console.log(users);
 //    console.log('------------------------------');
@@ -83,7 +83,6 @@ function createNewUser(_id) {
     
     newUser.id = _id;
     newUser.team = getTeam();
-    newUser.r = 20;
     
     if(newUser.team === teams[0].name){ // Pink
         newUser.x = (Math.random() * (canvasWidth / 2 - newUser.r)) + fieldOffset + newUser.r;
