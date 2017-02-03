@@ -51,8 +51,13 @@ io.sockets.on('connection', (socket) => {
     socket.emit('connectNewUser', createNewUser(socket.id));
     socket.emit('allUsers', users);
     
-    socket.on('updateUser', (user) => {
-        
+    socket.on('updateUser', (updatedUser) => {
+        users.forEach(user => {
+            if(user.id === socket.id){
+                user.x = updatedUser.x;
+                user.y = updatedUser.y;
+            }
+        })
     });
     
     //Disconnect
